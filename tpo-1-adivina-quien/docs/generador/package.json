@@ -1,0 +1,11 @@
+{
+  "name": "generador-documentacion-adivina-quien",
+  "private": true,
+  "description": "Genera el .docx de la documentación técnica del TPO",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "docx": "^9.0.0"
+  }
+}
