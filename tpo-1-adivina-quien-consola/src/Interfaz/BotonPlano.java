@@ -1,4 +1,4 @@
-package adivinaquien.ui;
+package Interfaz;
 
 import javax.swing.JButton;
 import java.awt.Color;
@@ -9,7 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-/** Botón dibujado a mano, para que se vea igual con cualquier look and feel. */
+// Boton dibujado a mano, para que se vea igual con cualquier look and feel.
 public class BotonPlano extends JButton {
 
     private final Color fondo;
@@ -42,20 +42,15 @@ public class BotonPlano extends JButton {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         Color base = isEnabled() ? fondo : new Color(0xE6E8EE);
-        if (isEnabled() && getModel().isPressed()) {
-            base = base.darker();
-        } else if (isEnabled() && getModel().isRollover()) {
-            base = mezclar(base, Color.WHITE, 0.15f);
-        }
+        if (isEnabled() && getModel().isPressed()) base = base.darker();
+        else if (isEnabled() && getModel().isRollover()) base = mezclar(base, Color.WHITE, 0.15f);
         g2.setColor(base);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
         g2.setFont(getFont());
         g2.setColor(isEnabled() ? frente : new Color(0x9AA1AE));
         FontMetrics fm = g2.getFontMetrics();
-        String texto = getText();
-        int x = (getWidth() - fm.stringWidth(texto)) / 2;
-        int y = (getHeight() - fm.getHeight()) / 2 + fm.getAscent();
-        g2.drawString(texto, x, y);
+        g2.drawString(getText(), (getWidth() - fm.stringWidth(getText())) / 2,
+                (getHeight() - fm.getHeight()) / 2 + fm.getAscent());
         g2.dispose();
     }
 

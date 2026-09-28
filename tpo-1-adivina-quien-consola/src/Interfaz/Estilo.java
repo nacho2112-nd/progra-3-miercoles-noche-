@@ -1,4 +1,4 @@
-package adivinaquien.ui;
+package Interfaz;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -7,12 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.Locale;
 
-/** Colores y tipografías de toda la interfaz, en un solo lugar. */
+// Colores y tipografias de toda la interfaz, en un solo lugar.
 public final class Estilo {
 
     public static final Color FONDO = new Color(0xF6F7FA);
@@ -25,9 +25,6 @@ public final class Estilo {
     public static final Color VERDE = new Color(0x0B6B74);
     public static final Color DORADO = new Color(0xC99A1C);
     public static final Color BORDE = new Color(0xD9DDE5);
-
-    /** Formato de números argentino: 20.000 y 0,00190. */
-    public static final Locale ES_AR = Locale.forLanguageTag("es-AR");
 
     private Estilo() {
     }
@@ -55,14 +52,14 @@ public final class Estilo {
         return l;
     }
 
-    /** Recuadro blanco con título chico arriba, para agrupar controles. */
+    // Recuadro blanco con borde y titulo, para agrupar controles
     public static JPanel seccion(String titulo, JComponent contenido) {
-        JPanel p = new JPanel(new BorderLayout(0, 6));
+        JPanel p = new JPanel(new BorderLayout());
         p.setBackground(PAPEL);
-        p.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(BORDE), BorderFactory.createEmptyBorder(8, 10, 10, 10)));
-        JLabel t = etiqueta(titulo.toUpperCase(), negrita(11f), TINTA_SUAVE);
-        p.add(t, BorderLayout.NORTH);
+        TitledBorder borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(BORDE), titulo);
+        borde.setTitleFont(negrita(13f));
+        borde.setTitleColor(TINTA);
+        p.setBorder(BorderFactory.createCompoundBorder(borde, BorderFactory.createEmptyBorder(4, 8, 8, 8)));
         p.add(contenido, BorderLayout.CENTER);
         return p;
     }

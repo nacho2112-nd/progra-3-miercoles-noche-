@@ -49,7 +49,11 @@ public abstract class Jugador implements Oraculo {
 
     // Un turno: decide, el rival responde y se descarta. Devuelve true si adivino.
     public boolean jugarTurno(Oraculo rival) {
-        Pregunta pregunta = decidir();
+        return jugar(decidir(), rival);
+    }
+
+    // Lo mismo, pero con la pregunta ya decidida (la ventana la toma de un boton)
+    public boolean jugar(Pregunta pregunta, Oraculo rival) {
         boolean si = rival.responder(pregunta);
         aprender(pregunta, si);
         System.out.println(nombre + ": " + pregunta + " -> " + (si ? "SÍ" : "NO")

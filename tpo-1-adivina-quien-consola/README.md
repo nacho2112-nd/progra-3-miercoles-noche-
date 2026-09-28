@@ -1,6 +1,6 @@
 # TPO 1 — Adivina Quién (versión consola)
 
-Versión de consola del equipo. La base es el repo de Pilar ([`pilipayo/Programacion3-TPO`](https://github.com/pilipayo/Programacion3-TPO)), y toma cosas de la versión Swing de [`tpo-1-adivina-quien/`](../tpo-1-adivina-quien): los 23 personajes, MergeSort, la interfaz `Oraculo` y el criterio Greedy.
+Versión de consola del equipo. La base es el repo de Pilar ([`pilipayo/Programacion3-TPO`](https://github.com/pilipayo/Programacion3-TPO)), y toma cosas de la versión Swing anterior (commit `8c6cd4d` de `main`, carpeta `tpo-1-adivina-quien/`): los 23 personajes, MergeSort, la interfaz `Oraculo` y el criterio Greedy.
 
 ## Cómo se juega
 
@@ -27,3 +27,5 @@ Hace falta JDK 25, porque `Main` es un archivo compacto (`void main()`). Desde e
 javac -encoding UTF-8 -d out src/Main.java src/*/*.java
 java -cp out Main
 ```
+
+Sin argumentos abre la ventana (Swing, paquete `Interfaz`). Con `java -cp out Main consola` se juega por consola.

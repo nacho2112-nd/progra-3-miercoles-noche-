@@ -41,11 +41,17 @@ public class Marcador {
     }
 
     public void mostrar() {
-        System.out.println("=== Marcador ===");
-        if (datos.isEmpty()) System.out.println("Todavía no jugó nadie.");
+        System.out.println("=== Marcador ===\n" + texto());
+    }
+
+    // Ordenado por partidas ganadas, de mayor a menor
+    public String texto() {
+        if (datos.isEmpty()) return "Todavía no jugó nadie.";
+        StringBuilder sb = new StringBuilder();
         datos.entrySet().stream()
                 .sorted((a, b) -> b.getValue()[0] - a.getValue()[0])
-                .forEach(e -> System.out.println(e.getKey() + ": " + e.getValue()[0]
-                        + " partidas ganadas (llegó al nivel " + e.getValue()[1] + ")"));
+                .forEach(e -> sb.append(e.getKey()).append(": ").append(e.getValue()[0])
+                        .append(" partidas ganadas (llegó al nivel ").append(e.getValue()[1]).append(")\n"));
+        return sb.toString();
     }
 }

@@ -1,4 +1,4 @@
-package adivinaquien.ui;
+package Interfaz;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -8,13 +8,14 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-/** Encabezado de cada pantalla: título, una línea de estado y los botones de la derecha. */
+// Encabezado de cada pantalla: titulo, una linea de estado y los botones de la derecha.
 public class BarraSuperior extends JPanel {
 
+    private final JLabel titulo;
     private final JLabel estado;
     private final JPanel botones = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
 
-    public BarraSuperior(String titulo, String estadoInicial) {
+    public BarraSuperior(String textoTitulo) {
         super(new BorderLayout());
         setBackground(Estilo.PAPEL);
         setBorder(BorderFactory.createCompoundBorder(
@@ -22,8 +23,9 @@ public class BarraSuperior extends JPanel {
                 BorderFactory.createEmptyBorder(10, 18, 10, 14)));
         JPanel textos = new JPanel(new GridLayout(2, 1));
         textos.setOpaque(false);
-        textos.add(Estilo.etiqueta(titulo, Estilo.titulo(20f), Estilo.TINTA));
-        estado = Estilo.etiqueta(estadoInicial, Estilo.texto(13.5f), Estilo.TINTA_SUAVE);
+        titulo = Estilo.etiqueta(textoTitulo, Estilo.titulo(20f), Estilo.TINTA);
+        estado = Estilo.etiqueta("", Estilo.texto(13.5f), Estilo.TINTA_SUAVE);
+        textos.add(titulo);
         textos.add(estado);
         add(textos, BorderLayout.CENTER);
         botones.setOpaque(false);
@@ -32,6 +34,10 @@ public class BarraSuperior extends JPanel {
 
     public void agregarBoton(JComponent boton) {
         botones.add(boton);
+    }
+
+    public void setTitulo(String texto) {
+        titulo.setText(texto);
     }
 
     public void setEstado(String texto) {
