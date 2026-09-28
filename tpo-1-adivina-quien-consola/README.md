@@ -27,3 +27,5 @@ Hace falta JDK 25, porque `Main` es un archivo compacto (`void main()`). Desde e
 javac -encoding UTF-8 -d out src/Main.java src/*/*.java
 java -cp out Main
 ```
+
+Sin argumentos abre la ventana (Swing, paquete `Interfaz`). Con `java -cp out Main consola` se juega por consola.

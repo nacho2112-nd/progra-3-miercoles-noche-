@@ -22,6 +22,12 @@ public record Pregunta(String categoria, String valor) implements Comparable<Pre
 
     @Override
     public String toString() {
-        return esArriesgue() ? "¿Es " + valor + "?" : "¿" + categoria + " = " + valor + "?";
+        return switch (categoria) {
+            case "nombre", "genero" -> "¿Es " + valor + "?";
+            case "pelo" -> valor.equals("pelado") ? "¿Es pelado?" : "¿Tiene pelo " + valor + "?";
+            case "barba" -> "¿Tiene barba?";
+            case "lentes", "sombrero" -> "¿Usa " + categoria + "?";
+            default -> "¿" + categoria + " = " + valor + "?";
+        };
     }
 }

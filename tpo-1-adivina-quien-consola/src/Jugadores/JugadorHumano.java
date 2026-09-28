@@ -12,9 +12,11 @@ public class JugadorHumano extends Jugador {
         super(nombre, tablero, indice);
     }
 
-    // El ID es la posicion en el tablero + 1 (autoincremental), asi que se busca directo
+    // Si viene uno solo (clic en la ventana) es ese. Si no, se pide por consola:
+    // el ID es la posicion en el tablero + 1 (autoincremental), asi que se busca directo
     @Override
     protected Personajes elegir(List<Personajes> disponibles) {
+        if (disponibles.size() == 1) return disponibles.get(0);
         return tablero.get(Consola.leerEntero("Elegí tu personaje secreto (id). No lo vas a poder cambiar:", 1, tablero.size()) - 1);
     }
 

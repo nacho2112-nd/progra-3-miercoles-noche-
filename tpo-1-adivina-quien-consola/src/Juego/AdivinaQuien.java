@@ -99,11 +99,11 @@ public class AdivinaQuien {
     }
 
     // El arbitro tambien usa solo el Oraculo: busca al personaje por el que el jugador dice que SI
-    private static Personajes secretoDe(Oraculo jugador, List<Personajes> tablero) {
+    public static Personajes secretoDe(Oraculo jugador, List<Personajes> tablero) {
         return tablero.stream().filter(p -> jugador.responder(Pregunta.arriesgue(p))).findFirst().orElseThrow();
     }
 
-    private static List<Personajes> sinElDe(Oraculo jugador, List<Personajes> tablero) {
+    public static List<Personajes> sinElDe(Oraculo jugador, List<Personajes> tablero) {
         return tablero.stream().filter(p -> !jugador.responder(Pregunta.arriesgue(p))).toList();
     }
 }

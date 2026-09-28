@@ -13,6 +13,7 @@ public class JugadorMaquina extends Jugador {
     private final int nivel;        // 1 = pregunta al azar, 2 = greedy
     private final boolean verboso;  // modo Maquina vs Maquina: muestra cada decision
     private final Random num_random = new Random();
+    private final StringBuilder razonamiento = new StringBuilder(); // lo que penso en el ultimo turno
 
     // 'heredado' = preguntas que ya se le hicieron al rival. La Maquina 2 arranca con las de la Maquina 1.
     public JugadorMaquina(int nivel, List<Personajes> tablero, IndiceAtributos indice, List<Registro> heredado, boolean verboso) {
@@ -29,6 +30,7 @@ public class JugadorMaquina extends Jugador {
 
     @Override
     protected Pregunta decidir() {
+        razonamiento.setLength(0);
         log("Candidatos: " + candidatos.stream().map(Personajes::get_Nombre).toList());
         return nivel == 1 ? alAzar() : greedy();
     }
@@ -95,6 +97,11 @@ public class JugadorMaquina extends Jugador {
     }
 
     private void log(String mensaje) {
+        razonamiento.append("   ").append(mensaje).append('\n');
         if (verboso) System.out.println("   [" + getNombre() + "] " + mensaje);
+    }
+
+    public String getRazonamiento() {
+        return razonamiento.toString();
     }
 }
